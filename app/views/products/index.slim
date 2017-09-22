@@ -1,0 +1,33 @@
+= content_for :head_javascript do
+  = javascript_include_tag "pages/products/index.js"
+= content_for :breadcrumbs, [[t("layouts.main_sidebar.products"), "#", "icon-price-tags"], t("layouts.main_sidebar.list_products")]
+
+.content
+  = render "search", view_mode: @view_mode
+  #product-list
+    = render "#{@view_mode}", products: @products
+
+javascript:
+  $(".table-togglable").footable();
+  $(document).on("input", "form#product-search input#q_keyword_cont", function(){
+    $("form#product-search").submit();
+  })
+  $(document).on("change", "form#product-search .select", function(){
+    $("form#product-search").submit();
+  })
+
+  $("form#product-search .select").select2({
+    allowClear: true
+  });
+
+  var switchery_view = document.querySelector(".switchery-view");
+  var init = new Switchery(switchery_view);
+
+  switchery_view.onchange = function(){
+    var view_mode_value = switchery_view.checked ? "list" : "grid"
+    var view_mode_input = $("form#product-search input[name=view_mode]");
+    if(view_mode_value !== view_mode_input.val()) {
+      view_mode_input.val(view_mode_value);
+      $("form#product-search").submit();
+    }
+  }

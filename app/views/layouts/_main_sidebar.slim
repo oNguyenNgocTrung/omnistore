@@ -32,7 +32,8 @@
               i.icon-price-tags
               span = t ".products"
             ul
-              li = link_to t(".list_products"), "#"
+              li class="#{active_when current_controller?(:products)}"
+                = link_to t(".list_products"), products_path
               li class="#{active_when current_controller?(:collections)}"
                 = link_to t(".list_collections"), collections_path
           li class="#{active_when current_controller?(:shops)}"

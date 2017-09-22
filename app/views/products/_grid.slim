@@ -1,0 +1,21 @@
+.container-detached
+  .container-detached
+    - products.each_slice(4) do |product_arr|
+      .row
+        - product_arr.each do |product|
+          .col-lg-3.col-sm-6
+            .panel
+              .panel-body
+                .thumb.thumb-fixed
+                  = link_to "#{image_url default_image_path}", data: {popup: "lightbox"} do
+                    = image_tag default_image_path, alt: ""
+                    span.zoom-image
+                      i.icon-plus2
+              .panel-body.panel-body-accent.text-center
+                h6.text-semibold.no-margin
+                  = link_to product.name, "#", class: "text-default"
+                ul.list-inline.list-inline-separate.mb-10
+                  li = link_to product.category_name, "#", class: "text-muted"
+                h3.no-margin.text-semibold = "$#{product.price}"
+    .text-center.content-group-lg.pt-20
+      = paginate products, window: 1, remote: true

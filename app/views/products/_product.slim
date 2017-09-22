@@ -1,0 +1,18 @@
+tr
+  td.width-80
+    / Todo show image
+    = image_tag default_image_path, alt: "", class: "img-thumbnail img-sm"
+  td = product.name
+  td = product.sku
+  td = product.barcode
+  td = product.quantity
+  td = product.price
+  td.width-80
+    ul.icons-list
+      li.text-primary-600
+        = link_to edit_product_path(product), title: t(".edit") do
+          i.icon-pencil7
+      li.text-danger-600
+        = link_to product_path(product), method: :delete,
+          data: {confirm: t("dictionary.confirm")}, title: t(".delete") do
+          i.icon-trash

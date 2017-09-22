@@ -1,0 +1,22 @@
+.panel.panel-flat.visible-action
+  table.table.table-togglable.table-hover
+    thead
+      tr
+        th[data-hide="phone" data-name="featured_image"]
+        th[data-toggle="true"]
+          = t ".name"
+        th[data-hide="phone,tablet"]
+          = t ".sku"
+        th[data-hide="phone,tablet"]
+          = t ".barcode"
+        th[data-hide="phone"]
+          = t ".quantity"
+        th[data-hide="phone"]
+          = t ".price"
+        th
+    tbody
+      = render partial: "product", collection: products
+  .panel-footer
+    .heading-elements.not-collapsible
+      #pagination
+        = paginate products, window: 1, remote: true

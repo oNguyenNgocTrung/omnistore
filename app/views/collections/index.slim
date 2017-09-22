@@ -8,7 +8,7 @@
         i.icon-arrow-left52.position-left
         span.text-semibold
           = t ".page_title"
-    .heading-elements
+    .heading-elements.not-collapsible
       = link_to t(".new_collection_btn"), new_collection_path, class: "btn btn-primary heading-btn"
 
 .content
@@ -24,8 +24,8 @@
           th
       tbody
         = render @collections
-    .panel-footer.has-visible-elements
-      .heading-elements.visible-elements
+    .panel-footer
+      .heading-elements.not-collapsible
         = paginate @collections, window: 1
 
 javascript:

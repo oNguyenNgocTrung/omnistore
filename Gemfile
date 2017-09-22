@@ -26,6 +26,7 @@ gem "activemodel-serializers-xml"
 gem "draper", "3.0.0"
 gem "faraday"
 gem "jquery-rails"
+gem "ransack"
 
 gem "capistrano"
 gem "capistrano3-puma"

@@ -1,0 +1,44 @@
+.panel.panel-flat
+  .panel-heading
+    h6.panel-title = "Products"
+    .heading-elements.not-collapsible
+      .heading-form
+        .form-group
+          label.checkbox-inline.switchery-double.checkbox-switchery.switchery-xs
+            | List
+            input.switchery-view type="checkbox" checked="checked"
+            | Gird
+      ul.icons-list
+        li
+          a data-action="collapse"
+  .panel-body
+    = search_form_for @q, html: {class: "main-search", id: "product-search"}, remote: true do |f|
+      = hidden_field_tag "view_mode", view_mode
+      .form-group.has-feedback.has-feedback-left
+        = f.search_field :keyword_cont, class: "form-control"
+        .form-control-feedback
+          i.icon-search4.text-muted.text-size-base
+      .row
+        .col-sm-2
+          .form-group
+            = select_tag "q[category_id_eq]", options_for_select(@product_form.categories),
+              class: "select form-control", data: {placeholder: "Select a category"}, include_blank: true
+        .col-sm-2
+          .form-group
+            = select_tag "q[vendor_id_eq]", options_for_select(@product_form.vendors),
+              class: "select form-control", data: {placeholder: "Select a vendor"}, include_blank: true
+        .col-sm-2
+          .form-group
+            = select_tag "q[by_collection]", options_for_select(@product_form.collections),
+              class: "select form-control", data: {placeholder: "Select a collection"}, include_blank: true
+        .col-sm-2
+          .form-group
+            = select_tag "q[by_tag]", options_for_select(@product_form.tags),
+              class: "select form-control", data: {placeholder: "Select a tag"}, include_blank: true
+        .col-sm-4.text-right
+          ul.list-inline.no-margin-bottom
+            li
+              = link_to products_path, class: "btn btn-link"
+                i.icon-reload-alt.position-left
+                = "Refine your search"
+
